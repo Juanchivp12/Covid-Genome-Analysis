@@ -2,12 +2,18 @@
 Repository for Covid-19 Genome Analysis
 
 
+
+
 # draw.io Link for making UML
 https://app.diagrams.net
 
 
+
+
 # Assignment instructions
 [1437_Assignment9_GenomeAnalysis.pdf](https://github.com/Juanchivp12/Covid-Genome-Analysis/files/14891351/1437_Assignment9_GenomeAnalysis.pdf)
+
+
 
 
 # Useful Documents

@@ -1,5 +1,7 @@
 # Covid-Genome-Analysis
-Repository for Covid-19 Genome Analysis
+- Repository for Covid-19 Genome Analysis.
+- Any changes made, remember to push commit
+- Always check to see if any changes were made and pull  
 
 
 

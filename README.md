@@ -12,7 +12,7 @@ https://app.diagrams.net
 
 # Useful Documents
 [GenomeDefinitions.pdf](https://github.com/Juanchivp12/Covid-Genome-Analysis/files/14891356/GenomeDefinitions.pdf)
-
 [genomeLabNeededFiles.zip](https://github.com/Juanchivp12/Covid-Genome-Analysis/files/14891358/genomeLabNeededFiles.zip)
+[measlesTestData.zip](https://github.com/Juanchivp12/Covid-Genome-Analysis/files/14891369/measlesTestData.zip)
 
 

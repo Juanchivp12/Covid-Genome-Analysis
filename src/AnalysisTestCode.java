@@ -7,7 +7,7 @@ public class AnalysisTestCode
 {
     public static void main(String[] args) throws IOException
     {
-        // Maybe make an array of files containing all 3 csv's?
+        // Maybe make an array of files containing all 3 csv's? not sure
         File[] files = new File[3];
         files[0] = new File("covidSequenceRF1.csv");
         files[1] = new File("covidSequenceRF2.csv");

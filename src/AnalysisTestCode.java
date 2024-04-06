@@ -12,5 +12,7 @@ public class AnalysisTestCode
         files[0] = new File("covidSequenceRF1.csv");
         files[1] = new File("covidSequenceRF2.csv");
         files[2] = new File("covidSequenceRF3.csv");
+        //testing
     }
+
 }

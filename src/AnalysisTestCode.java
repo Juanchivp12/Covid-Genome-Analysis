@@ -5,6 +5,6 @@ public class AnalysisTestCode
 {
     public static void main(String[] args) 
     {
-        // testing discord server
+        // testing
     }
 }

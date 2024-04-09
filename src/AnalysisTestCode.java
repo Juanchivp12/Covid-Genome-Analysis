@@ -13,7 +13,9 @@ public class AnalysisTestCode
         files[1] = new File("covidSequenceRF2.csv");
         files[2] = new File("covidSequenceRF3.csv");
         // Got it to work heck yeah
-
+        Scanner kbd = new Scanner(System.in);
+        System.out.println("Enter the genome sequence:");
+        String genome = scanner.nextLine().toUpperCase(); // something like this is going to be needed to get user input
     }
 
 }

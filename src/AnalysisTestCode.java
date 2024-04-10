@@ -1,5 +1,3 @@
-// file for code testing
-// Not sure how many class files we need to make yet
 import java.io.*;
 import java.util.Scanner;
 
@@ -16,7 +14,7 @@ public class AnalysisTestCode
         files[1] = new File("covidSequenceRF2.csv");
         files[2] = new File("covidSequenceRF3.csv");
         
-        System.out.print("Enter the genome sequence:");
+        System.out.print("Enter the genome sequence: ");
         String genomeSequence = kbd.nextLine().toUpperCase(); // something like this is going to be needed to get user input
     }
 

@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class AminoAcid
 {
+    // ATTRIBUTES
     private String fullName = " ";
     private String abbreviation = " ";
     private ArrayList<String> codons = new ArrayList<String>();

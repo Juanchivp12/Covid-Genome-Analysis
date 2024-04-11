@@ -1,6 +1,6 @@
 public class Gene
 {
-    private String aminoAcidSequence= "";
+    private String aminoAcidSequence= " ";
     private int startPosition = 0;
     private int endPosition = 0;
     private int geneLength = 0;

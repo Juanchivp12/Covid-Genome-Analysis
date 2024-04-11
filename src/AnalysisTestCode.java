@@ -9,7 +9,6 @@ public class AnalysisTestCode
         String file2 = "covidSequenceRF2.csv";
         String file3 = "covidSequenceRF3.csv";
 
-
         Scanner kbd = new Scanner(System.in);
         PrintWriter outFile = new PrintWriter("OutputFile.txt");
         

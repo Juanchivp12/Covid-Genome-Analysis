@@ -2,34 +2,14 @@ import java.util.ArrayList;
 
 public class AminoAcid
 {
-    // ATTRIBUTES
-    private String fullName = " ";
-    private String abbreviation = " ";
-    private ArrayList<String> codons = new ArrayList<String>();
-
-    // CONSTRUCTORS
-    public AminoAcid() {}
+    private final String fullName;
+    private final String abbreviation;
+    private final ArrayList<String> codons;
 
     public AminoAcid(String fullName, String abbreviation, ArrayList<String> codons)
     {
         this.fullName = fullName;
         this.abbreviation = abbreviation;
-        this.codons = codons;
-    }
-
-    // SETTERS
-    public void setFullName(String fullName)
-    {
-        this.fullName = fullName;
-    }
-
-    public void setAbbreviation(String abbreviation)
-    {
-        this.abbreviation = abbreviation;
-    }
-
-    public void setCodons(ArrayList<String> codons)
-    {
         this.codons = codons;
     }
 
@@ -49,21 +29,21 @@ public class AminoAcid
         return codons;
     }
 
-    // toString, equals, and clone methods
+    @Override
     public String toString()
     {
-        return "";
+        return "The codons for " + fullName + "(" + abbreviation + ")" + " are: " + String.join(" ", codons);
     }
 
-    public boolean equals(AminoAcid aminoAcidTest)
-    {
-        return this.fullName == aminoAcidTest.fullName
-                && this.abbreviation == aminoAcidTest.abbreviation
-                && this.codons == aminoAcidTest.codons;
-    }
-
-    public AminoAcid clone()
-    {
-        return new AminoAcid(fullName, abbreviation, codons);
-    }
+//    public boolean equals(AminoAcid aminoAcidTest)
+//    {
+//        return this.fullName == aminoAcidTest.fullName
+//                && this.abbreviation == aminoAcidTest.abbreviation
+//                && this.codons == aminoAcidTest.codons;
+//    }
+//
+//    public AminoAcid clone()
+//    {
+//        return new AminoAcid(fullName, abbreviation, codons);
+//    }
 }

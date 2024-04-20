@@ -1,3 +1,11 @@
+/**
+ * This class implements a program for analyzing Covid-19 genome sequences.
+ * COSC-1437.200
+ * @author Juan Villegas
+ * @author Zander Tashman
+ * @author Brian Pak
+ */
+
 import java.util.Scanner;
 import java.io.*;
 import java.util.ArrayList;
@@ -88,6 +96,9 @@ public class Main
 
     /**
      * This method asks the user to enter a letter and prints out the amino acid that contains that letter
+     * @param filename the filename from which to read the amino acid table
+     * @param choiceTwo the choice made by the user
+     * @throws IOException if an I/O error occurs
      */
     public static void lookForAcidFromList(String filename, int choiceTwo) throws IOException
     {
@@ -111,6 +122,7 @@ public class Main
     /**
      * This method makes an array of AminoAcids using the aminoAcidTable file
      * @return the array list of amino acids
+     * @throws IOException if an I/O error occurs
      */
     public static ArrayList<AminoAcid> readFromAminoAcidTable() throws IOException
     {
@@ -149,6 +161,7 @@ public class Main
      * This method reads the codons from a file chosen by the user and adds each codon into an array list
      * @param filename a String. file name chosen by user
      * @return the array list of codons
+     * @throws IOException if an I/O error occurs
      */
     public static ArrayList<String> readCodonsFromFile(String filename) throws IOException
     {
@@ -171,6 +184,13 @@ public class Main
         return codonsFromFile;
     }
 
+    /**
+     * This method performs codon bias analysis.
+     * @param filename the filename from which to read codons
+     * @param codons the list of codons
+     * @param choiceTwo the choice made by the user
+     * @throws IOException if an I/O error occurs
+     */
     public static void codonBiasAnalysis(String filename, ArrayList<String> codons, int choiceTwo) throws IOException
     {
         ArrayList<String> codonsFromFile = readCodonsFromFile(filename);
@@ -217,6 +237,12 @@ public class Main
             System.out.printf("%s: %d %.2f%%\n", codons.get(i), count, percentage);
         }
     }
+
+    /**
+     * This method reads tokens from a string and creates gene sequences.
+     * @param geneSequences the list to store gene sequences
+     * @param str the string to tokenize
+     */
     public static void readTokens(ArrayList<Gene> geneSequences, String str)
     {
         String[] tokens = str.split(",");
@@ -258,6 +284,10 @@ public class Main
         }
     }
 
+    /**
+     * This method prints the genome sequence.
+     * @param geneSequences the list of gene sequences
+     */
     public static void printGenomeSequence(ArrayList<Gene> geneSequences)
     {
         int i = 1;

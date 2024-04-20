@@ -1,3 +1,11 @@
+/**
+ * This class represents a gene with its amino acid sequence, start and end nucleotide positions, and gene length.
+ * COSC-1437.200
+ * @author Juan Villegas
+ * @author Zander Tashman
+ * @author Brian Pak
+ */
+
 import java.util.ArrayList;
 
 public class Gene
@@ -7,6 +15,13 @@ public class Gene
     private final int endNucleotide;
     private final int geneLength;
 
+    /**
+     * Constructs a Gene object with the given amino acid sequence, start and end nucleotide positions, and gene length.
+     * @param aminoAcidSequence the amino acid sequence of the gene
+     * @param startNucleotide the start nucleotide position of the gene
+     * @param endNucleotide the end nucleotide position of the gene
+     * @param geneLength the length of the gene
+     */
     public Gene(ArrayList<String> aminoAcidSequence, int startNucleotide, int endNucleotide, int geneLength)
     {
         this.aminoAcidSequence = codonToLetter(aminoAcidSequence);
@@ -36,6 +51,11 @@ public class Gene
         return geneLength;
     }
 
+    /**
+     * Converts codons to single-letter amino acid codes.
+     * @param aminoAcidCodon the list of codons to be converted
+     * @return the amino acid sequence represented by single-letter codes
+     */
     public static String codonToLetter(ArrayList<String> aminoAcidCodon)
     {
         String aminoAcidSingleLetters = "";
@@ -153,20 +173,37 @@ public class Gene
         return aminoAcidSingleLetters;
     }
 
+    /**
+     * Returns a string representation of the gene, including its amino acid sequence and nucleotide positions.
+     * @return a string representation of the gene
+     */
     @Override
     public String toString()
     {
         return "Gene: " + aminoAcidSequence + "\nStart position: " + startNucleotide + "\nEnd position: " + endNucleotide;
     }
 
-//    public boolean equals(Gene geneTest)
-//    {
-//        return this.aminoAcidSequence == geneTest.aminoAcidSequence && this.startNucleotide == geneTest.startNucleotide
-//                && this.endNucleotide == geneTest.endNucleotide && this.geneLength == geneTest.geneLength;
-//    }
-//
-//    public Gene clone()
-//    {
-//        return new Gene(aminoAcidSequence, startNucleotide, endNucleotide, geneLength);
-//    }
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     * Genes are considered equal if they have the same amino acid sequence, start and end nucleotide positions, and gene length.
+     * @param geneTest the reference object with which to compare
+     * @return true if this object is the same as the obj argument; false otherwise
+     */
+    public boolean equals(Gene geneTest)
+    {
+        return this.aminoAcidSequence == geneTest.aminoAcidSequence
+                && this.startNucleotide == geneTest.startNucleotide
+                && this.endNucleotide == geneTest.endNucleotide
+                && this.geneLength == geneTest.geneLength;
+    }
+
+    /**
+     * Creates and returns a copy of this object.
+     * @return a clone of this instance
+     */
+    public Gene clone()
+    {
+        ArrayList<String> clonedAminoAcidSequence = new ArrayList<>(Integer.parseInt(this.aminoAcidSequence));
+        return new Gene(clonedAminoAcidSequence, startNucleotide, endNucleotide, geneLength);
+    }
 }

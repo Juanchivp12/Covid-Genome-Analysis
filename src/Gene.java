@@ -3,15 +3,15 @@ import java.util.ArrayList;
 public class Gene
 {
     private final String aminoAcidSequence;
-    private final int startPosition;
-    private final int endPosition;
+    private final int startNucleotide;
+    private final int endNucleotide;
     private final int geneLength;
 
-    public Gene(ArrayList<String> aminoAcidSequence, int startPosition, int endPosition, int geneLength)
+    public Gene(ArrayList<String> aminoAcidSequence, int startNucleotide, int endNucleotide, int geneLength)
     {
         this.aminoAcidSequence = codonToLetter(aminoAcidSequence);
-        this.startPosition = startPosition;
-        this.endPosition = endPosition;
+        this.startNucleotide = startNucleotide;
+        this.endNucleotide = endNucleotide;
         this.geneLength = geneLength;
     }
 
@@ -21,14 +21,14 @@ public class Gene
         return aminoAcidSequence;
     }
 
-    public int getStartPosition()
+    public int getStartNucleotide()
     {
-        return startPosition;
+        return startNucleotide;
     }
 
-    public int getEndPosition()
+    public int getEndNucleotide()
     {
-        return endPosition;
+        return endNucleotide;
     }
 
     public int getGeneLength()
@@ -156,17 +156,17 @@ public class Gene
     @Override
     public String toString()
     {
-        return "Gene: " + aminoAcidSequence + "\nStart position: " + startPosition + "\nEnd position: " + endPosition;
+        return "Gene: " + aminoAcidSequence + "\nStart position: " + startNucleotide + "\nEnd position: " + endNucleotide;
     }
 
 //    public boolean equals(Gene geneTest)
 //    {
-//        return this.aminoAcidSequence == geneTest.aminoAcidSequence && this.startPosition == geneTest.startPosition
-//                && this.endPosition == geneTest.endPosition && this.geneLength == geneTest.geneLength;
+//        return this.aminoAcidSequence == geneTest.aminoAcidSequence && this.startNucleotide == geneTest.startNucleotide
+//                && this.endNucleotide == geneTest.endNucleotide && this.geneLength == geneTest.geneLength;
 //    }
 //
 //    public Gene clone()
 //    {
-//        return new Gene(aminoAcidSequence, startPosition, endPosition, geneLength);
+//        return new Gene(aminoAcidSequence, startNucleotide, endNucleotide, geneLength);
 //    }
 }

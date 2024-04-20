@@ -149,7 +149,6 @@ public class Main
 
     /**
      * This method reads the codons from a file chosen by the user and adds each codon into an array list
-     *
      * @param filename a String. file name chosen by user
      * @return the array list of codons
      */
@@ -235,7 +234,7 @@ public class Main
                 for (i = startPosition + 1; i < tokens.length; i++)
                 {
                     aminoAcidSequence.add(tokens[i]);
-                    if (tokens[i].equals("TAG") || tokens[i].equals("TAA") || tokens[i].equals("TGA"))
+                    if (tokens[i].equals("TAG") || tokens[i].equals("TGA") || tokens[i].equals("TAA"))
                     {
                         endPosition = i;
 
@@ -249,10 +248,10 @@ public class Main
                 {
                     // Calculates gene length, start nucleotide, and stop nucleotide
                     int geneLength = endPosition - startPosition + 1;
-                    int startNucleotide = startPosition * 3, stopNucleotide = startNucleotide + (geneLength * 3);
+                    int startNucleotide = startPosition * 3, endNucleotide = startNucleotide + (geneLength * 3);
 
                     // Adds a new gene of the previously found information into the first array list made
-                    geneSequences.add(new Gene(aminoAcidSequence, startNucleotide, stopNucleotide, geneLength));
+                    geneSequences.add(new Gene(aminoAcidSequence, startNucleotide, endNucleotide, geneLength));
                 }
             }
         }
@@ -264,7 +263,7 @@ public class Main
         for (Gene g : geneSequences)
         {
             System.out.println("Gene " + i + " (" + g.getGeneLength() + ") :");
-            System.out.println(g.getStartPosition() + ".." + g.getEndPosition());
+            System.out.println(g.getStartNucleotide() + ".." + g.getEndNucleotide());
             System.out.print("Sequence: ");
             System.out.println(g.getAminoAcidSequence());
             System.out.println();

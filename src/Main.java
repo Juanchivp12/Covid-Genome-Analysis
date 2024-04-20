@@ -51,15 +51,13 @@ public class Main
             str = infile.nextLine();
         }
         infile.close();
-        String[] tokens = str.split(",");
-        int endPosition = 0;
 
         // Makes an array list of genes
         ArrayList<Gene> geneSequences = new ArrayList<>();
         if (actionChoice == 1)
         {
             // Read token array until start codon is read
-            readTokens(tokens, geneSequences, endPosition);
+            readTokens(geneSequences, str);
 
             // Prints gene information
             printGenomeSequence(geneSequences);
@@ -219,8 +217,11 @@ public class Main
             System.out.printf("%s: %d %.2f%%\n", codons.get(i), count, percentage);
         }
     }
-    public static void readTokens(String[] tokens, ArrayList<Gene> geneSequences, int endPosition)
+    public static void readTokens(ArrayList<Gene> geneSequences, String str)
     {
+        String[] tokens = str.split(",");
+        int endPosition = 0;
+
         for (int i = 0; i < tokens.length; i++)
         {
             if (tokens[i].equals("ATG"))

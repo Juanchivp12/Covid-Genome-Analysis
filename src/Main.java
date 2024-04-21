@@ -68,7 +68,7 @@ public class Main
             readTokens(geneSequences, str);
 
             // Prints gene information
-            printGenomeSequence(geneSequences);
+            printGenomeSequence(geneSequences, RFFile);
 
         }
         else if (actionChoice == 2 && choiceTwo == 1)
@@ -288,8 +288,10 @@ public class Main
      * This method prints the genome sequence.
      * @param geneSequences the list of gene sequences
      */
-    public static void printGenomeSequence(ArrayList<Gene> geneSequences)
+    public static void printGenomeSequence(ArrayList<Gene> geneSequences, String RFFile) throws IOException
     {
+        System.out.println("** Gene analysis for file: " + RFFile + " **");
+
         int i = 1;
         for (Gene g : geneSequences)
         {
@@ -300,5 +302,29 @@ public class Main
             System.out.println();
             i++;
         }
+
+        String geneSequenceFile = "geneSequences.txt";
+        writeGenomeSequenceToFile(geneSequences, geneSequenceFile, RFFile);
+    }
+
+    /**
+     * This method writes the genome sequence information to a file.
+     * @param geneSequences the list of gene sequences
+     * @param outputFileName the name of the output file
+     * @throws IOException if an I/O error occurs
+     */
+    public static void writeGenomeSequenceToFile(ArrayList<Gene> geneSequences, String outputFileName, String RFFile) throws IOException
+    {
+        FileWriter writer = new FileWriter(outputFileName);
+
+        writer.write("** Gene analysis for file: " + RFFile + " **\n");
+        for (Gene g : geneSequences) {
+            writer.write("Gene " + g.getGeneLength() + " :\n");
+            writer.write(g.getStartNucleotide() + ".." + g.getEndNucleotide() + "\n");
+            writer.write("Sequence: " + g.getAminoAcidSequence() + "\n\n");
+        }
+
+        writer.close();
+        System.out.println("Genome sequence information has been written to " + outputFileName);
     }
 }

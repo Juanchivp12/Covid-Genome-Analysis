@@ -17,7 +17,7 @@ public class Gene
 
     public Gene()
     {
-        this.aminoAcidSequence = "";
+        this.aminoAcidSequence = "N/A";
         this.startNucleotide = 0;
         this.endNucleotide = 0;
         this.geneLength = 0;

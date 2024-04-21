@@ -1,0 +1,8 @@
+The codons for Glutamine(Q) are: CAA CAG
+CAA: 218 54.23%
+CAG: 184 45.77%
+The codons for Alanine(A) are: GCT GCC GCA GCG
+GCT: 87 33.21%
+GCC: 50 19.08%
+GCA: 96 36.64%
+GCG: 29 11.07%

@@ -16,8 +16,8 @@ public class AminoAcid
 
     public AminoAcid()
     {
-        this.fullName = "";
-        this.abbreviation = "";
+        this.fullName = "N/A";
+        this.abbreviation = "N/A";
         this.codons = new ArrayList<>();
     }
 

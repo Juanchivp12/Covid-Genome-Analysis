@@ -6,9 +6,11 @@
  * @author Brian Pak
  */
 
+import java.nio.file.Paths;
 import java.util.Scanner;
 import java.io.*;
 import java.util.ArrayList;
+import java.nio.file.Files;
 
 public class Main
 {
@@ -75,18 +77,25 @@ public class Main
         {
             System.out.println("\n*********** Complete Codon Bias Report **********\n");
             ArrayList<AminoAcid> aminoAcidList = readFromAminoAcidTable();
+            String completeCodonBiasAnalysis = "completeCodonBiasAnalysis.txt";
+
+            // Delete the file if it exists
+            Files.deleteIfExists(Paths.get(completeCodonBiasAnalysis));
+
+            FileWriter writer = new FileWriter(completeCodonBiasAnalysis, true);
 
             for (AminoAcid aminoAcid : aminoAcidList)
             {
                 System.out.println(aminoAcid.toString());
-                codonBiasAnalysis(RFFile, aminoAcid.getCodons(), choiceTwo);
+                writer.write(aminoAcid + "\n");
+                codonBiasAnalysis(RFFile, aminoAcid.getCodons(), choiceTwo, completeCodonBiasAnalysis);
                 System.out.println();
             }
+            writer.close();
         }
         else if (actionChoice == 2 && choiceTwo == 2)
         {
             lookForAcidFromList(RFFile, choiceTwo);
-
         }
         else
         {
@@ -108,13 +117,21 @@ public class Main
         System.out.print("Which Amino Acid would you like to see? (Enter its one letter abbreviation) ");
         String aminoAcidLetter = kbd.nextLine().toUpperCase();
         System.out.println();
+        String aminoAcidCodonBiasAnalysis = "aminoAcidCodonBiasAnalysis.txt";
+
+        // Delete the file if it exists
+        Files.deleteIfExists(Paths.get(aminoAcidCodonBiasAnalysis));
+
+        FileWriter writer = new FileWriter(aminoAcidCodonBiasAnalysis, true);
 
         for (AminoAcid aminoAcid : aminoAcidList)
         {
             if (aminoAcidLetter.equals(aminoAcid.getAbbreviation()))
             {
+                writer.write(aminoAcid + "\n");
+                writer.close();
                 System.out.println(aminoAcid);
-                codonBiasAnalysis(filename, aminoAcid.getCodons(), choiceTwo);
+                codonBiasAnalysis(filename, aminoAcid.getCodons(), choiceTwo, aminoAcidCodonBiasAnalysis);
             }
         }
     }
@@ -185,15 +202,18 @@ public class Main
     }
 
     /**
-     * This method performs codon bias analysis.
+     * This method performs codon bias analysis and writes the output to a file.
      * @param filename the filename from which to read codons
      * @param codons the list of codons
      * @param choiceTwo the choice made by the user
+     * @param outputFileName the name of the output file
      * @throws IOException if an I/O error occurs
      */
-    public static void codonBiasAnalysis(String filename, ArrayList<String> codons, int choiceTwo) throws IOException
+    public static void codonBiasAnalysis(String filename, ArrayList<String> codons, int choiceTwo, String outputFileName) throws IOException
     {
         ArrayList<String> codonsFromFile = readCodonsFromFile(filename);
+
+        FileWriter writer = new FileWriter(outputFileName, true);
 
         // Initialize arrays to store counts and percentages for each codon
         int[] codonCounts = new int[codons.size()];
@@ -235,7 +255,10 @@ public class Main
             double percentage = ((double) count / totalCount) * 100;
             codonPercentages[i] = percentage;
             System.out.printf("%s: %d %.2f%%\n", codons.get(i), count, percentage);
+            writer.write(codons.get(i) + ": " + count + " " + String.format("%.2f", percentage) + "%\n");
         }
+        writer.close();
+        System.out.println("\nCodon bias analysis has been written to " + outputFileName);
     }
 
     /**
@@ -304,7 +327,7 @@ public class Main
         }
 
         String geneSequenceFile = "geneSequences.txt";
-        writeGenomeSequenceToFile(geneSequences, geneSequenceFile, RFFile);
+        writeGenomeSequenceToFile(geneSequences, RFFile, geneSequenceFile);
     }
 
     /**
@@ -313,7 +336,7 @@ public class Main
      * @param outputFileName the name of the output file
      * @throws IOException if an I/O error occurs
      */
-    public static void writeGenomeSequenceToFile(ArrayList<Gene> geneSequences, String outputFileName, String RFFile) throws IOException
+    public static void writeGenomeSequenceToFile(ArrayList<Gene> geneSequences, String RFFile, String outputFileName) throws IOException
     {
         FileWriter writer = new FileWriter(outputFileName);
 

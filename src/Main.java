@@ -10,7 +10,6 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 import java.io.*;
 import java.util.ArrayList;
-import java.nio.file.Files;
 
 public class Main
 {
@@ -79,10 +78,7 @@ public class Main
             ArrayList<AminoAcid> aminoAcidList = readFromAminoAcidTable();
             String completeCodonBiasAnalysis = "completeCodonBiasAnalysis.txt";
 
-            // Delete the file if it exists
-            Files.deleteIfExists(Paths.get(completeCodonBiasAnalysis));
-
-            FileWriter writer = new FileWriter(completeCodonBiasAnalysis, true);
+            PrintWriter writer = new PrintWriter(completeCodonBiasAnalysis);
 
             for (AminoAcid aminoAcid : aminoAcidList)
             {
@@ -119,10 +115,7 @@ public class Main
         System.out.println();
         String aminoAcidCodonBiasAnalysis = "aminoAcidCodonBiasAnalysis.txt";
 
-        // Delete the file if it exists
-        Files.deleteIfExists(Paths.get(aminoAcidCodonBiasAnalysis));
-
-        FileWriter writer = new FileWriter(aminoAcidCodonBiasAnalysis, true);
+        PrintWriter writer = new PrintWriter(aminoAcidCodonBiasAnalysis);
 
         for (AminoAcid aminoAcid : aminoAcidList)
         {
@@ -212,8 +205,7 @@ public class Main
     public static void codonBiasAnalysis(String filename, ArrayList<String> codons, int choiceTwo, String outputFileName) throws IOException
     {
         ArrayList<String> codonsFromFile = readCodonsFromFile(filename);
-
-        FileWriter writer = new FileWriter(outputFileName, true);
+        PrintWriter writer = new PrintWriter(outputFileName);
 
         // Initialize arrays to store counts and percentages for each codon
         int[] codonCounts = new int[codons.size()];
@@ -338,7 +330,7 @@ public class Main
      */
     public static void writeGenomeSequenceToFile(ArrayList<Gene> geneSequences, String RFFile, String outputFileName) throws IOException
     {
-        FileWriter writer = new FileWriter(outputFileName);
+        PrintWriter writer = new PrintWriter(outputFileName);
 
         writer.write("** Gene analysis for file: " + RFFile + " **\n");
         for (Gene g : geneSequences) {

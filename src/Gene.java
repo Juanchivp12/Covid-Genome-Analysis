@@ -10,10 +10,18 @@ import java.util.ArrayList;
 
 public class Gene
 {
-    private final String aminoAcidSequence;
-    private final int startNucleotide;
-    private final int endNucleotide;
-    private final int geneLength;
+    private String aminoAcidSequence;
+    private int startNucleotide;
+    private int endNucleotide;
+    private int geneLength;
+
+    public Gene()
+    {
+        this.aminoAcidSequence = "";
+        this.startNucleotide = 0;
+        this.endNucleotide = 0;
+        this.geneLength = 0;
+    }
 
     /**
      * Constructs a Gene object with the given amino acid sequence, start and end nucleotide positions, and gene length.
@@ -27,6 +35,27 @@ public class Gene
         this.aminoAcidSequence = codonToLetter(aminoAcidSequence);
         this.startNucleotide = startNucleotide;
         this.endNucleotide = endNucleotide;
+        this.geneLength = geneLength;
+    }
+
+    // SETTERS
+    public void setAminoAcidSequence(String aminoAcidSequence)
+    {
+        this.aminoAcidSequence = aminoAcidSequence;
+    }
+
+    public void setStartNucleotide(int startNucleotide)
+    {
+        this.startNucleotide = startNucleotide;
+    }
+
+    public void setEndNucleotide(int endNucleotide)
+    {
+        this.endNucleotide = endNucleotide;
+    }
+
+    public void setGeneLength(int geneLength)
+    {
         this.geneLength = geneLength;
     }
 

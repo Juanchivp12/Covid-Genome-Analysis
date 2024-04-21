@@ -10,9 +10,16 @@ import java.util.ArrayList;
 
 public class AminoAcid
 {
-    private final String fullName;
-    private final String abbreviation;
-    private final ArrayList<String> codons;
+    private String fullName;
+    private String abbreviation;
+    private ArrayList<String> codons;
+
+    public AminoAcid()
+    {
+        this.fullName = "";
+        this.abbreviation = "";
+        this.codons = new ArrayList<>();
+    }
 
     /**
      * Constructs an AminoAcid object with the given full name, abbreviation, and codons.
@@ -24,6 +31,22 @@ public class AminoAcid
     {
         this.fullName = fullName;
         this.abbreviation = abbreviation;
+        this.codons = codons;
+    }
+
+    // SETTERS
+    public void setFullName(String fullName)
+    {
+        this.fullName = fullName;
+    }
+
+    public void setAbbreviation(String abbreviation)
+    {
+        this.abbreviation = abbreviation;
+    }
+
+    public void setCodons(ArrayList<String> codons)
+    {
         this.codons = codons;
     }
 

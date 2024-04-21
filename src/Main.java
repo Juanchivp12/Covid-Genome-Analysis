@@ -74,11 +74,12 @@ public class Main
         }
         else if (actionChoice == 2 && choiceTwo == 1)
         {
-            System.out.println("\n*********** Complete Codon Bias Report **********\n");
-            ArrayList<AminoAcid> aminoAcidList = readFromAminoAcidTable();
             String completeCodonBiasAnalysis = "completeCodonBiasAnalysis.txt";
-
             PrintWriter writer = new PrintWriter(completeCodonBiasAnalysis);
+            System.out.println("\n*********** Complete Codon Bias Report **********\n");
+            writer.write("*********** Complete Codon Bias Report **********\n");
+
+            ArrayList<AminoAcid> aminoAcidList = readFromAminoAcidTable();
 
             for (AminoAcid aminoAcid : aminoAcidList)
             {
@@ -88,6 +89,7 @@ public class Main
                 System.out.println();
             }
             writer.close();
+            System.out.println("\nCodon bias analysis has been written to " + completeCodonBiasAnalysis);
         }
         else if (actionChoice == 2 && choiceTwo == 2)
         {
@@ -250,7 +252,6 @@ public class Main
             writer.write(codons.get(i) + ": " + count + " " + String.format("%.2f", percentage) + "%\n");
         }
         writer.close();
-        System.out.println("\nCodon bias analysis has been written to " + outputFileName);
     }
 
     /**

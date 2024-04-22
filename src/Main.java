@@ -76,17 +76,16 @@ public class Main
         {
             String completeCodonBiasAnalysis = "completeCodonBiasAnalysis.txt";
             PrintWriter writer = new PrintWriter(completeCodonBiasAnalysis);
-            System.out.println("\n*********** Complete Codon Bias Report **********\n");
-            writer.write("*********** Complete Codon Bias Report **********\n");
+
+            writer.println("*********** Complete Codon Bias Report **********\n");
 
             ArrayList<AminoAcid> aminoAcidList = readFromAminoAcidTable();
 
             for (AminoAcid aminoAcid : aminoAcidList)
             {
-                System.out.println(aminoAcid.toString());
-                writer.write(aminoAcid + "\n");
-                codonBiasAnalysis(RFFile, aminoAcid.getCodons(), choiceTwo, completeCodonBiasAnalysis);
-                System.out.println();
+                writer.println(aminoAcid.toString());
+                codonBiasAnalysis(RFFile, aminoAcid.getCodons(), choiceTwo, completeCodonBiasAnalysis, writer);
+                writer.println();
             }
             writer.close();
             System.out.println("\nCodon bias analysis has been written to " + completeCodonBiasAnalysis);
@@ -111,24 +110,23 @@ public class Main
     {
         ArrayList<AminoAcid> aminoAcidList = readFromAminoAcidTable();
         Scanner kbd = new Scanner(System.in);
+        String aminoAcidLetter;
 
-        System.out.print("Which Amino Acid would you like to see? (Enter its one letter abbreviation) ");
-        String aminoAcidLetter = kbd.nextLine().toUpperCase();
+        do
+        {
+        System.out.print("Which Amino Acid would you like to see? (Enter its one letter abbreviation (Type -1 when done)) ");
+        aminoAcidLetter = kbd.nextLine().toUpperCase();
         System.out.println();
-        String aminoAcidCodonBiasAnalysis = "aminoAcidCodonBiasAnalysis.txt";
-
-        PrintWriter writer = new PrintWriter(aminoAcidCodonBiasAnalysis);
 
         for (AminoAcid aminoAcid : aminoAcidList)
         {
             if (aminoAcidLetter.equals(aminoAcid.getAbbreviation()))
             {
-                writer.write(aminoAcid + "\n");
-                writer.close();
                 System.out.println(aminoAcid);
-                codonBiasAnalysis(filename, aminoAcid.getCodons(), choiceTwo, aminoAcidCodonBiasAnalysis);
+                codonBiasAnalysis(filename, aminoAcid.getCodons(), choiceTwo, null, null);
             }
         }
+        } while (aminoAcidLetter != "-1");
     }
 
     /**
@@ -204,10 +202,9 @@ public class Main
      * @param outputFileName the name of the output file
      * @throws IOException if an I/O error occurs
      */
-    public static void codonBiasAnalysis(String filename, ArrayList<String> codons, int choiceTwo, String outputFileName) throws IOException
+    public static void codonBiasAnalysis(String filename, ArrayList<String> codons, int choiceTwo, String outputFileName, PrintWriter writer) throws IOException
     {
         ArrayList<String> codonsFromFile = readCodonsFromFile(filename);
-        PrintWriter writer = new PrintWriter(outputFileName);
 
         // Initialize arrays to store counts and percentages for each codon
         int[] codonCounts = new int[codons.size()];
@@ -228,6 +225,14 @@ public class Main
                     totalCount++;
                 }
             }
+            // Output the complete codon bias report and iterate over each codon for the current amino acid
+            for (int i = 0; i < codons.size(); i++)
+            {
+                int count = codonCounts[i];
+                double percentage = ((double) count / totalCount) * 100;
+                codonPercentages[i] = percentage;
+                writer.printf("%s: %d %.2f%%\n", codons.get(i), count, percentage);
+            }
         }
         else
         {
@@ -240,18 +245,15 @@ public class Main
                     totalCount++;
                 }
             }
+            // Output the complete codon bias report and iterate over each codon for the current amino acid
+            for (int i = 0; i < codons.size(); i++)
+            {
+                int count = codonCounts[i];
+                double percentage = ((double) count / totalCount) * 100;
+                codonPercentages[i] = percentage;
+                System.out.printf("%s: %d %.2f%%\n", codons.get(i), count, percentage);
+            }
         }
-
-        // Output the complete codon bias report and iterate over each codon for the current amino acid
-        for (int i = 0; i < codons.size(); i++)
-        {
-            int count = codonCounts[i];
-            double percentage = ((double) count / totalCount) * 100;
-            codonPercentages[i] = percentage;
-            System.out.printf("%s: %d %.2f%%\n", codons.get(i), count, percentage);
-            writer.write(codons.get(i) + ": " + count + " " + String.format("%.2f", percentage) + "%\n");
-        }
-        writer.close();
     }
 
     /**
@@ -306,41 +308,22 @@ public class Main
      */
     public static void printGenomeSequence(ArrayList<Gene> geneSequences, String RFFile) throws IOException
     {
-        System.out.println("** Gene analysis for file: " + RFFile + " **");
+        String outputFileName = "geneSequence.txt";
+
+        PrintWriter outfile = new PrintWriter(outputFileName);
+        System.out.println("Genome sequence information has been written to " + outputFileName);
+        outfile.println("** Gene analysis for file: " + RFFile + " **");
 
         int i = 1;
         for (Gene g : geneSequences)
         {
-            System.out.println("Gene " + i + " (" + g.getGeneLength() + ") :");
-            System.out.println(g.getStartNucleotide() + ".." + g.getEndNucleotide());
-            System.out.print("Sequence: ");
-            System.out.println(g.getAminoAcidSequence());
-            System.out.println();
+            outfile.println("Gene " + i + " (" + g.getGeneLength() + ") :");
+            outfile.println(g.getStartNucleotide() + ".." + g.getEndNucleotide());
+            outfile.print("Sequence: ");
+            outfile.println(g.getAminoAcidSequence());
+            outfile.println();
             i++;
         }
-
-        String geneSequenceFile = "geneSequences.txt";
-        writeGenomeSequenceToFile(geneSequences, RFFile, geneSequenceFile);
-    }
-
-    /**
-     * This method writes the genome sequence information to a file.
-     * @param geneSequences the list of gene sequences
-     * @param outputFileName the name of the output file
-     * @throws IOException if an I/O error occurs
-     */
-    public static void writeGenomeSequenceToFile(ArrayList<Gene> geneSequences, String RFFile, String outputFileName) throws IOException
-    {
-        PrintWriter writer = new PrintWriter(outputFileName);
-
-        writer.write("** Gene analysis for file: " + RFFile + " **\n");
-        for (Gene g : geneSequences) {
-            writer.write("Gene " + g.getGeneLength() + " :\n");
-            writer.write(g.getStartNucleotide() + ".." + g.getEndNucleotide() + "\n");
-            writer.write("Sequence: " + g.getAminoAcidSequence() + "\n\n");
-        }
-
-        writer.close();
-        System.out.println("Genome sequence information has been written to " + outputFileName);
+        outfile.close();
     }
 }

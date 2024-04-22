@@ -37,16 +37,16 @@ public class Main
         System.out.println("1. Gene Analysis Report");
         System.out.print("2. Codon Bias Analysis ");
 
-        int actionChoice = kbd.nextInt();
+        int analysisChoice = kbd.nextInt();
         System.out.println();
-        int choiceTwo = 0;
+        int codonBiasChoice = 0;
 
-        if (actionChoice == 2)
+        if (analysisChoice == 2)
         {
             System.out.println("Which would you like to do?");
             System.out.println("1. Complete Amino Acid Codon Bias Report");
             System.out.print("2. Individual Amino Acid Codon Bias Analysis ");
-            choiceTwo = kbd.nextInt();
+            codonBiasChoice = kbd.nextInt();
             System.out.println();
         }
 
@@ -63,7 +63,7 @@ public class Main
 
         // Makes an array list of genes
         ArrayList<Gene> geneSequences = new ArrayList<>();
-        if (actionChoice == 1)
+        if (analysisChoice == 1)
         {
             // Read token array until start codon is read
             readTokens(geneSequences, str);
@@ -72,7 +72,7 @@ public class Main
             printGenomeSequence(geneSequences, RFFile);
 
         }
-        else if (actionChoice == 2 && choiceTwo == 1)
+        else if (analysisChoice == 2 && codonBiasChoice == 1)
         {
             String completeCodonBiasAnalysis = "completeCodonBiasAnalysis.txt";
             PrintWriter outfile = new PrintWriter(completeCodonBiasAnalysis);
@@ -84,15 +84,15 @@ public class Main
             for (AminoAcid aminoAcid : aminoAcidList)
             {
                 outfile.println(aminoAcid.toString());
-                codonBiasAnalysis(RFFile, aminoAcid.getCodons(), choiceTwo, completeCodonBiasAnalysis, outfile);
+                codonBiasAnalysis(RFFile, aminoAcid.getCodons(), codonBiasChoice, completeCodonBiasAnalysis, outfile);
                 outfile.println();
             }
             outfile.close();
             System.out.println("\nCodon bias analysis has been written to " + completeCodonBiasAnalysis);
         }
-        else if (actionChoice == 2 && choiceTwo == 2)
+        else if (analysisChoice == 2 && codonBiasChoice == 2)
         {
-            lookForAcidFromList(RFFile, choiceTwo);
+            lookForAcidFromList(RFFile, codonBiasChoice);
         }
         else
         {

@@ -127,7 +127,7 @@ public class Main
             }
         }
         System.out.println();
-        } while (aminoAcidLetter != "-1");
+        } while (!aminoAcidLetter.equals("-1"));
     }
 
     /**

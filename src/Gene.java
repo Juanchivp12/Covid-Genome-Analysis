@@ -153,9 +153,7 @@ public class Gene
                     aminoAcidSingleLetters += "V"; break;
 
                 case "TAG": case "TAA": case "TGA":
-                    aminoAcidSingleLetters += "*"; break;
-                default:
-                    aminoAcidSingleLetters += "?";
+                    aminoAcidSingleLetters += "*";
             }
         }
         return aminoAcidSingleLetters;

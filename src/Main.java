@@ -101,11 +101,11 @@ public class Main
 
     /**
      * This method asks the user to enter a letter and prints out the amino acid that contains that letter
-     * @param filename the filename from which to read the amino acid table
+     * @param RFFile the reading frame file from which to read the amino acid table
      * @param choiceTwo the choice made by the user
      * @throws IOException if an I/O error occurs
      */
-    public static void lookForAcidFromList(String filename, int choiceTwo) throws IOException
+    public static void lookForAcidFromList(String RFFile, int choiceTwo) throws IOException
     {
         ArrayList<AminoAcid> aminoAcidList = readFromAminoAcidTable();
         Scanner kbd = new Scanner(System.in);
@@ -122,7 +122,7 @@ public class Main
             if (aminoAcidLetter.equals(aminoAcid.getAbbreviation()))
             {
                 System.out.println(aminoAcid);
-                codonBiasAnalysis(filename, aminoAcid.getCodons(), choiceTwo, null, null);
+                codonBiasAnalysis(RFFile, aminoAcid.getCodons(), choiceTwo, null, null);
             }
         }
         System.out.println();
@@ -169,14 +169,14 @@ public class Main
 
     /**
      * This method reads the codons from a file chosen by the user and adds each codon into an array list
-     * @param filename a String. file name chosen by user
-     * @return the array list of codons
+     * @param RFFile the reading frame file
+     * @return codonsFromFile the array list of codons
      * @throws IOException if an I/O error occurs
      */
-    public static ArrayList<String> readCodonsFromFile(String filename) throws IOException
+    public static ArrayList<String> readCodonsFromFile(String RFFile) throws IOException
     {
         ArrayList<String> codonsFromFile = new ArrayList<>();
-        File file = new File(filename);
+        File file = new File(RFFile);
         Scanner inFile = new Scanner(file);
 
         while (inFile.hasNext())
@@ -196,15 +196,15 @@ public class Main
 
     /**
      * This method performs codon bias analysis and writes the output to a file.
-     * @param filename the filename from which to read codons
+     * @param RFFile the reading frame file from which to read codons
      * @param codons the list of codons
      * @param choiceTwo the choice made by the user
      * @param outputFileName the name of the output file
      * @throws IOException if an I/O error occurs
      */
-    public static void codonBiasAnalysis(String filename, ArrayList<String> codons, int choiceTwo, String outputFileName, PrintWriter writer) throws IOException
+    public static void codonBiasAnalysis(String RFFile, ArrayList<String> codons, int choiceTwo, String outputFileName, PrintWriter writer) throws IOException
     {
-        ArrayList<String> codonsFromFile = readCodonsFromFile(filename);
+        ArrayList<String> codonsFromFile = readCodonsFromFile(RFFile);
 
         // Initialize arrays to store counts and percentages for each codon
         int[] codonCounts = new int[codons.size()];
@@ -244,14 +244,6 @@ public class Main
                     codonCounts[index]++;
                     totalCount++;
                 }
-            }
-            // Output the complete codon bias report and iterate over each codon for the current amino acid
-            for (int i = 0; i < codons.size(); i++)
-            {
-                int count = codonCounts[i];
-                double percentage = ((double) count / totalCount) * 100;
-                codonPercentages[i] = percentage;
-                System.out.printf("%s: %d %.2f%%\n", codons.get(i), count, percentage);
             }
         }
     }
@@ -308,10 +300,9 @@ public class Main
      */
     public static void printGenomeSequence(ArrayList<Gene> geneSequences, String RFFile) throws IOException
     {
-        String outputFileName = "geneSequence.txt";
+        String geneSequence = "geneSequence.txt";
 
-        PrintWriter outfile = new PrintWriter(outputFileName);
-        System.out.println("Genome sequence information has been written to " + outputFileName);
+        PrintWriter outfile = new PrintWriter(geneSequence);
         outfile.println("** Gene analysis for file: " + RFFile + " **\n");
 
         int i = 1;
@@ -325,5 +316,6 @@ public class Main
             i++;
         }
         outfile.close();
+        System.out.println("Genome sequence information has been written to " + geneSequence);
     }
 }

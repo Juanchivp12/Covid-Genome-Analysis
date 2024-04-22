@@ -6,7 +6,6 @@
  * @author Brian Pak
  */
 
-import java.nio.file.Paths;
 import java.util.Scanner;
 import java.io.*;
 import java.util.ArrayList;

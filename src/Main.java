@@ -114,7 +114,7 @@ public class Main
 
         do
         {
-        System.out.print("Which Amino Acid would you like to see? (Enter its one letter abbreviation (Type -1 when done)) ");
+        System.out.print("Which Amino Acid would you like to see? (Enter its one letter abbreviation (Type -1 to quit)) ");
         aminoAcidLetter = kbd.nextLine().toUpperCase();
         System.out.println();
 
@@ -126,6 +126,7 @@ public class Main
                 codonBiasAnalysis(filename, aminoAcid.getCodons(), choiceTwo, null, null);
             }
         }
+        System.out.println();
         } while (aminoAcidLetter != "-1");
     }
 
@@ -312,7 +313,7 @@ public class Main
 
         PrintWriter outfile = new PrintWriter(outputFileName);
         System.out.println("Genome sequence information has been written to " + outputFileName);
-        outfile.println("** Gene analysis for file: " + RFFile + " **");
+        outfile.println("** Gene analysis for file: " + RFFile + " **\n");
 
         int i = 1;
         for (Gene g : geneSequences)

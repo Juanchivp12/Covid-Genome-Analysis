@@ -75,19 +75,19 @@ public class Main
         else if (actionChoice == 2 && choiceTwo == 1)
         {
             String completeCodonBiasAnalysis = "completeCodonBiasAnalysis.txt";
-            PrintWriter writer = new PrintWriter(completeCodonBiasAnalysis);
+            PrintWriter outfile = new PrintWriter(completeCodonBiasAnalysis);
 
-            writer.println("*********** Complete Codon Bias Report **********\n");
+            outfile.println("*********** Complete Codon Bias Report **********\n");
 
             ArrayList<AminoAcid> aminoAcidList = readFromAminoAcidTable();
 
             for (AminoAcid aminoAcid : aminoAcidList)
             {
-                writer.println(aminoAcid.toString());
-                codonBiasAnalysis(RFFile, aminoAcid.getCodons(), choiceTwo, completeCodonBiasAnalysis, writer);
-                writer.println();
+                outfile.println(aminoAcid.toString());
+                codonBiasAnalysis(RFFile, aminoAcid.getCodons(), choiceTwo, completeCodonBiasAnalysis, outfile);
+                outfile.println();
             }
-            writer.close();
+            outfile.close();
             System.out.println("\nCodon bias analysis has been written to " + completeCodonBiasAnalysis);
         }
         else if (actionChoice == 2 && choiceTwo == 2)

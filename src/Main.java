@@ -221,8 +221,7 @@ public class Main
         Scanner kbd = new Scanner(System.in);
         String aminoAcidLetter;
 
-        do
-        {
+        do {
         System.out.print("Which Amino Acid would you like to see? (Enter its one letter abbreviation (Type -1 to quit)) ");
         aminoAcidLetter = kbd.nextLine().toUpperCase();
         System.out.println();

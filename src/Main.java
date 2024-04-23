@@ -222,7 +222,7 @@ public class Main
         String aminoAcidLetter;
 
         do {
-        System.out.print("Which Amino Acid would you like to see? (Enter its one letter abbreviation (Type -1 to quit)) ");
+        System.out.print("Which Amino Acid would you like to see? (Enter its one letter abbreviation (Type 0 to quit)) ");
         aminoAcidLetter = kbd.nextLine().toUpperCase();
         System.out.println();
 

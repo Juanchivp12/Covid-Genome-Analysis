@@ -152,7 +152,7 @@ public class Main
      */
     public static void printGenomeSequence(ArrayList<Gene> geneSequences, String readingFrameFile) throws IOException
     {
-        String geneSequenceFile = "geneSequence.txt";
+        String geneSequenceFile = "genomeSequence.txt";
         PrintWriter outfile = new PrintWriter(geneSequenceFile);
         outfile.println("** Gene analysis for file: " + readingFrameFile + " **\n");
 
@@ -284,17 +284,17 @@ public class Main
         int totalCount = 0;
 
         // Count occurrences of each codon
+        for (String codon : codonsFromFile)
+        {
+            int index = codons.indexOf(codon);
+            if (index != -1)
+            {
+                codonCounts[index]++;
+                totalCount++;
+            }
+        }
         if (codonBiasChoice == 1)
         {
-            for (String codon : codonsFromFile)
-            {
-                int index = codons.indexOf(codon);
-                if (index != -1)
-                {
-                    codonCounts[index]++;
-                    totalCount++;
-                }
-            }
             // Output the complete codon bias report and iterate over each codon for the current amino acid
             for (int i = 0; i < codons.size(); i++)
             {
@@ -302,15 +302,6 @@ public class Main
                 double percentage = ((double) count / totalCount) * 100;
                 codonPercentages[i] = percentage;
                 outfile.printf("%s: %d %.2f%%\n", codons.get(i), count, percentage);
-            }
-        }
-        else
-        {
-            for (String codon : codonsFromFile)
-            {
-                int index = codons.indexOf(codon);
-                codonCounts[index]++;
-                totalCount++;
             }
         }
     }

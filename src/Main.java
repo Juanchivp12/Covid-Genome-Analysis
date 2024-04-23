@@ -315,7 +315,7 @@ public class Main
             int count = codonCounts[i];
             double percentage = ((double) count / totalCount) * 100;
             codonPercentages[i] = percentage;
-            System.out.printf("%s: %d %.2f%%\n", codons.get(i), count, percentage);
+            outfile.printf("%s: %d %.2f%%\n", codons.get(i), count, percentage);
         }
     }
 }

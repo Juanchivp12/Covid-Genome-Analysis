@@ -283,39 +283,39 @@ public class Main
         // Initialize a variable to count the total number of codons
         int totalCount = 0;
 
+        // Iterate over each genetic codon in the list of codons read from the reading frame
+        for (String codon : codonsFromFile)
+        {
+            int index = codons.indexOf(codon);
+            if (index != -1)
+            {
+                codonCounts[index]++;
+                totalCount++;
+            }
+        }
+
         // Count occurrences of each codon
         if (codonBiasChoice == 1)
         {
-            for (String codon : codonsFromFile)
+            // Write the complete codon bias report and iterate over each codon for the current amino acid to the file
+            for (int i = 0; i < codons.size(); i++)
             {
-                int index = codons.indexOf(codon);
-                if (index != -1)
-                {
-                    codonCounts[index]++;
-                    totalCount++;
-                }
+                int count = codonCounts[i];
+                double percentage = ((double) count / totalCount) * 100;
+                codonPercentages[i] = percentage;
+                outfile.printf("%s: %d %.2f%%\n", codons.get(i), count, percentage);
             }
         }
         else
         {
-            for (String codon : codonsFromFile)
+            // Output the individual codon bias analysis
+            for (int i = 0; i < codons.size(); i++)
             {
-                int index = codons.indexOf(codon);
-                if (index != -1)
-                {
-                    codonCounts[index]++;
-                    totalCount++;
-                }
+                int count = codonCounts[i];
+                double percentage = ((double) count / totalCount) * 100;
+                codonPercentages[i] = percentage;
+                System.out.printf("%s: %d %.2f%%\n", codons.get(i), count, percentage);
             }
-        }
-
-        // Output the complete codon bias report and iterate over each codon for the current amino acid
-        for (int i = 0; i < codons.size(); i++)
-        {
-            int count = codonCounts[i];
-            double percentage = ((double) count / totalCount) * 100;
-            codonPercentages[i] = percentage;
-            outfile.printf("%s: %d %.2f%%\n", codons.get(i), count, percentage);
         }
     }
 }

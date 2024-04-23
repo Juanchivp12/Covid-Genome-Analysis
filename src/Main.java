@@ -235,7 +235,7 @@ public class Main
             }
         }
         System.out.println();
-        } while (!aminoAcidLetter.equals("-1"));
+        } while (!aminoAcidLetter.equals("0"));
     }
 
     /**

@@ -96,6 +96,8 @@ public class Main
         {
             System.out.println("At least one invalid choice was made.");
         }
+
+        kbd.close();
     }
 
     /**
@@ -236,6 +238,8 @@ public class Main
         }
         System.out.println();
         } while (!aminoAcidLetter.equals("0"));
+
+        kbd.close();
     }
 
     /**

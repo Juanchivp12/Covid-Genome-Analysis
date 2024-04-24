@@ -299,25 +299,19 @@ public class Main
         }
 
         // Count occurrences of each codon
-        if (codonBiasChoice == 1)
+        for (int i = 0; i < codons.size(); i++)
         {
-            // Write the complete codon bias report and iterate over each codon for the current amino acid to the file
-            for (int i = 0; i < codons.size(); i++)
+            int count = codonCounts[i];
+            double percentage = ((double) count / totalCount) * 100;
+            codonPercentages[i] = percentage;
+            if (codonBiasChoice == 1)
             {
-                int count = codonCounts[i];
-                double percentage = ((double) count / totalCount) * 100;
-                codonPercentages[i] = percentage;
+                // Write the complete codon bias report and iterate over each codon for the current amino acid to the file
                 outfile.printf("%s: %d %.2f%%\n", codons.get(i), count, percentage);
             }
-        }
-        else
-        {
-            // Output the individual codon bias analysis
-            for (int i = 0; i < codons.size(); i++)
+            else
             {
-                int count = codonCounts[i];
-                double percentage = ((double) count / totalCount) * 100;
-                codonPercentages[i] = percentage;
+                // Output the individual codon bias analysis
                 System.out.printf("%s: %d %.2f%%\n", codons.get(i), count, percentage);
             }
         }

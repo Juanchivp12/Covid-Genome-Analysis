@@ -311,7 +311,7 @@ public class Main
             }
             else
             {
-                // Output the individual codon bias analysis
+                // Output the individual amino acid's codon bias analysis
                 System.out.printf("%s: %3d %7.2f%%\n", codons.get(i), count, percentage);
             }
         }

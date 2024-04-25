@@ -307,12 +307,12 @@ public class Main
             if (codonBiasChoice == 1)
             {
                 // Write the complete codon bias report and iterate over each codon for the current amino acid to the file
-                outfile.printf("%s: %d %.2f%%\n", codons.get(i), count, percentage);
+                outfile.printf("%s: %3d %7.2f%%\n", codons.get(i), count, percentage);
             }
             else
             {
                 // Output the individual codon bias analysis
-                System.out.printf("%s: %d %.2f%%\n", codons.get(i), count, percentage);
+                System.out.printf("%s: %3d %7.2f%%\n", codons.get(i), count, percentage);
             }
         }
     }

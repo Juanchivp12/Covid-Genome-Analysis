@@ -70,7 +70,6 @@ public class AminoAcid
      * Returns a string representation of the amino acid, including its full name, abbreviation, and codons.
      * @return a string representation of the amino acid
      */
-    @Override
     public String toString()
     {
         return "The codons for " + fullName + "(" + abbreviation + ")" + " are: " + String.join(" ", codons);
